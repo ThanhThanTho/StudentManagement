@@ -18,8 +18,6 @@ namespace Project
             InitializeComponent();
         }
 
-
-
         private void Form1_Load(object sender, EventArgs e)
         {
             //load SQL data
@@ -50,6 +48,7 @@ namespace Project
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.Text = "Application";
+            dataGridView1.MultiSelect = false;
 
         }
 
@@ -150,6 +149,9 @@ namespace Project
             List<Student> a = SQLHandle.getAllStudent();
             dataGridView1.DataSource = a;
 
+            dataGridView1.ClearSelection();
+            
+
             //reset value 
             textBox7.Text = "";
             radioButton3.Checked = true;
@@ -163,6 +165,35 @@ namespace Project
             numericUpDown6.Value = DateTime.Now.Day;
             numericUpDown5.Value = DateTime.Now.Month;
             numericUpDown7.Value = DateTime.Now.Year;
+
+            button4.Enabled = false;
+            button5.Enabled = false;
+
+            
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            button5.Enabled = true;
+            button4.Enabled = true;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete this Student", "Check", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                DataGridViewRow row = dataGridView1.SelectedRows[0];
+                int id = Convert.ToInt32(row.Cells["Id"].Value);
+                string command = "delete from Student where ID = @i";
+                SqlParameter[] parameter = new SqlParameter[1];
+                parameter[0] = new SqlParameter("@i", System.Data.SqlDbType.Int);
+                parameter[0].Value = id;
+                SQLHandle.SQLExecute(command, parameter);
+
+                //load SQL data
+                dataGridView1.DataSource = SQLHandle.getAllStudent();
+            }
         }
     }
 }
