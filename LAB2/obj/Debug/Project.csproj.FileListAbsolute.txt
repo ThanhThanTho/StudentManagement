@@ -39,11 +39,11 @@ D:\VisualStudio\Project\LAB2\bin\Debug\System.Text.Json.xml
 D:\VisualStudio\Project\LAB2\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\VisualStudio\Project\LAB2\bin\Debug\System.ValueTuple.xml
 D:\VisualStudio\Project\LAB2\obj\Debug\Project.csproj.AssemblyReference.cache
-D:\VisualStudio\Project\LAB2\obj\Debug\LAB2.Form1.resources
-D:\VisualStudio\Project\LAB2\obj\Debug\LAB2.Form2.resources
 D:\VisualStudio\Project\LAB2\obj\Debug\LAB2.Properties.Resources.resources
 D:\VisualStudio\Project\LAB2\obj\Debug\Project.csproj.GenerateResource.cache
 D:\VisualStudio\Project\LAB2\obj\Debug\Project.csproj.CoreCompileInputs.cache
 D:\VisualStudio\Project\LAB2\obj\Debug\Project.csproj.CopyComplete
 D:\VisualStudio\Project\LAB2\obj\Debug\LAB2.exe
 D:\VisualStudio\Project\LAB2\obj\Debug\LAB2.pdb
+D:\VisualStudio\Project\LAB2\obj\Debug\Project.Form1.resources
+D:\VisualStudio\Project\LAB2\obj\Debug\Project.Form2.resources

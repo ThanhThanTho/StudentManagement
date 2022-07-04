@@ -49,6 +49,7 @@ namespace Project
             numericUpDown7.Value = DateTime.Now.Year;
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.Text = "Application";
 
         }
 
