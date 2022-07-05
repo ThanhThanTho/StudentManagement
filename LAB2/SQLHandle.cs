@@ -62,5 +62,22 @@ namespace Project
             DataTable table = getData(cmd, null);
             return ToStuList(table);
         }
+
+        public static List<Major> ToMajorList(DataTable dt)
+        {
+            List<Major> list = new List<Major>();
+            foreach (DataRow row in dt.Rows)
+            {
+                list.Add(new Major(row[0].ToString(), row[1].ToString()));
+            }
+            return list;
+        }
+
+        public static List<Major> getAllMajor()
+        {
+            string cmd = "select * from Major";
+            DataTable dt = getData(cmd, null);
+            return ToMajorList(dt);
+        }
     }
 }

@@ -180,7 +180,7 @@ namespace Project
 
         private void button5_Click(object sender, EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Do you want to delete this Student", "Check", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Do you want to delete this Student?", "Check", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 DataGridViewRow row = dataGridView1.SelectedRows[0];
@@ -194,6 +194,22 @@ namespace Project
                 //load SQL data
                 dataGridView1.DataSource = SQLHandle.getAllStudent();
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Form2 a = new Form2();
+            a.Text = "Add student";
+            a.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            int id = Convert.ToInt32(row.Cells["Id"].Value);
+            Form2 a = new Form2();
+            a.Text = "Update student: " + id;
+            a.ShowDialog();
         }
     }
 }
