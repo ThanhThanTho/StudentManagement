@@ -59,7 +59,7 @@ namespace Project
 
         private void comboBox1_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,7 +111,7 @@ namespace Project
             string command = "select * from Student";
             DataTable table = SQLHandle.getData(command, null);
             List<Student> list = SQLHandle.ToStuList(table);
-            dataGridView1.DataSource = 
+            dataGridView1.DataSource =
                 list.Where(x => x.Id.ToString().Contains(textBox7.Text)
                  && sex.Contains(x.Sex)
                  && x.Name.ToLower().Contains(textBox5.Text.ToLower())
@@ -124,7 +124,7 @@ namespace Project
         public Dictionary<int, int> limit()
         {
             Dictionary<int, int> limit = new Dictionary<int, int>();
-            limit.Add(1, 31); limit.Add(2,29); limit.Add(3, 31);
+            limit.Add(1, 31); limit.Add(2, 29); limit.Add(3, 31);
             limit.Add(4, 30); limit.Add(5, 31); limit.Add(6, 30);
             limit.Add(7, 31); limit.Add(8, 31); limit.Add(9, 30);
             limit.Add(10, 31); limit.Add(11, 30); limit.Add(12, 31);
@@ -150,7 +150,7 @@ namespace Project
             dataGridView1.DataSource = a;
 
             dataGridView1.ClearSelection();
-            
+
 
             //reset value 
             textBox7.Text = "";
@@ -169,7 +169,7 @@ namespace Project
             button4.Enabled = false;
             button5.Enabled = false;
 
-            
+
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -210,6 +210,56 @@ namespace Project
             Form2 a = new Form2();
             a.Text = "Update student: " + id;
             a.ShowDialog();
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            //create excel app
+            Microsoft.Office.Interop.Excel._Application app
+                = new Microsoft.Office.Interop.Excel.Application();
+            //create workbook
+            Microsoft.Office.Interop.Excel._Workbook workbook
+                = app.Workbooks.Add(Type.Missing);
+            //create new excel sheet
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            //storing headers
+            for (int i = 1; i < dataGridView1.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = dataGridView1.Columns[i - 1].HeaderText;
+            }
+            if (dataGridView1.RowCount > 0)
+            {
+                int rowEx = 2, rowData = 0;
+                //storing every data in datagrid
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    DateTime date = Convert.ToDateTime(dataGridView1.Rows[rowData].Cells[3].Value);
+                    string sex;
+                    if (dataGridView1.Rows[rowData].Cells[2].Value.ToString().Equals("True"))
+                    {
+                        sex = "Male";
+                    }
+                    else sex = "Female";
+                    worksheet.Cells[rowEx, 1] = dataGridView1.Rows[rowData].Cells[0].Value.ToString();
+                    worksheet.Cells[rowEx, 2] = dataGridView1.Rows[rowData].Cells[1].Value;
+                    worksheet.Cells[rowEx, 3] = sex;
+                    worksheet.Cells[rowEx, 4] = date.Day + "/" + date.Month + "/" + date.Year;
+                    worksheet.Cells[rowEx, 5] = dataGridView1.Rows[rowData].Cells[4].Value;
+                    worksheet.Cells[rowEx, 6] = dataGridView1.Rows[rowData].Cells[5].Value.ToString();
+                    worksheet.Cells[rowEx, 7] = dataGridView1.Rows[rowData].Cells[6].Value.ToString() + "%";
+                    rowEx++;
+                    rowData++;
+                }
+            }
+            SaveFileDialog a = new SaveFileDialog();
+            a.ShowDialog();
+            if (a.ShowDialog() == DialogResult.OK)
+            {
+                workbook.SaveAs(a.FileName);
+                app.Quit();
+            }
         }
     }
 }
