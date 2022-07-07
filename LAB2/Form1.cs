@@ -47,9 +47,12 @@ namespace Project
             numericUpDown7.Value = DateTime.Now.Year;
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            this.Text = "Application";
+            this.Text = "STUDENT MANAGEMENT";
             dataGridView1.MultiSelect = false;
 
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -169,7 +172,8 @@ namespace Project
             button4.Enabled = false;
             button5.Enabled = false;
 
-
+            comboBox2.Text = "Id";
+            comboBox3.Text = "Ascending";
         }
 
         private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -257,9 +261,119 @@ namespace Project
             a.ShowDialog();
             if (a.ShowDialog() == DialogResult.OK)
             {
-                workbook.SaveAs(a.FileName);
+                workbook.SaveAs(a.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.
+                    Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 app.Quit();
             }
+        }
+
+        private void comboBox2_TextChanged(object sender, EventArgs e)
+        {
+            List<Student> list = DataToList();
+            if (comboBox3.Text.Equals("Ascending"))
+            {
+                sortAsc(list);
+            }
+            else sortDes(list);
+
+            dataGridView1.DataSource = list;
+            dataGridView1.ClearSelection();
+        }
+
+        List<Student> DataToList()
+        {
+            List<Student> list = new List<Student>();
+            int rowData = 0;
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                int id = Convert.ToInt32(dataGridView1.Rows[rowData].Cells[0].Value);
+                string name = dataGridView1.Rows[rowData].Cells[1].Value.ToString();
+                bool sex = Convert.ToBoolean(dataGridView1.Rows[rowData].Cells[2].Value);
+                DateTime dob = Convert.ToDateTime(dataGridView1.Rows[rowData].Cells[3].Value);
+                string major = dataGridView1.Rows[rowData].Cells[4].Value.ToString();
+                bool active = Convert.ToBoolean(dataGridView1.Rows[rowData].Cells[5].Value);
+                float sho = Convert.ToSingle(dataGridView1.Rows[rowData].Cells[6].Value);
+                list.Add(new Student(id, name, sex, dob, major, active, sho));
+                rowData++;
+            }
+            return list;
+        }
+
+        void sortAsc(List<Student> list)
+        {
+            if (comboBox2.Text.Equals("Id"))
+            {
+                list.Sort((x, y) => x.Id.CompareTo(y.Id));
+            }
+            else if (comboBox2.Text.Equals("Name"))
+            {
+                list.Sort((x, y) => x.Name.CompareTo(y.Name));
+            }
+            else if (comboBox2.Text.Equals("Sex"))
+            {
+                list.Sort((x, y) => x.Sex.CompareTo(y.Sex));
+            }
+            else if (comboBox2.Text.Equals("DoB"))
+            {
+                list.Sort((x, y) => x.Dob.CompareTo(y.Dob));
+            }
+            else if (comboBox2.Text.Equals("Major"))
+            {
+                list.Sort((x, y) => x.Major.CompareTo(y.Major));
+            }
+            else if (comboBox2.Text.Equals("Active"))
+            {
+                list.Sort((x, y) => x.Active.CompareTo(y.Active));
+            }
+            else if (comboBox2.Text.Equals("Scholarship"))
+            {
+                list.Sort((x, y) => x.Scholarship.CompareTo(y.Scholarship));
+            }
+        }
+
+        void sortDes(List<Student> list)
+        {
+            if (comboBox2.Text.Equals("Id"))
+            {
+                list.Sort((x, y) => y.Id.CompareTo(x.Id));
+            }
+            else if (comboBox2.Text.Equals("Name"))
+            {
+                list.Sort((x, y) => y.Name.CompareTo(x.Name));
+            }
+            else if (comboBox2.Text.Equals("Sex"))
+            {
+                list.Sort((x, y) => y.Sex.CompareTo(x.Sex));
+            }
+            else if (comboBox2.Text.Equals("DoB"))
+            {
+                list.Sort((x, y) => y.Dob.CompareTo(x.Dob));
+            }
+            else if (comboBox2.Text.Equals("Major"))
+            {
+                list.Sort((x, y) => y.Major.CompareTo(x.Major));
+            }
+            else if (comboBox2.Text.Equals("Active"))
+            {
+                list.Sort((x, y) => y.Active.CompareTo(x.Active));
+            }
+            else if (comboBox2.Text.Equals("Scholarship"))
+            {
+                list.Sort((x, y) => y.Scholarship.CompareTo(x.Scholarship));
+            }
+        }
+
+        private void comboBox3_TextChanged(object sender, EventArgs e)
+        {
+            List<Student> list = DataToList();
+            if (comboBox3.Text.Equals("Ascending"))
+            {
+                sortAsc(list);
+            }
+            else sortDes(list);
+
+            dataGridView1.DataSource = list;
+            dataGridView1.ClearSelection();
         }
     }
 }
