@@ -68,8 +68,6 @@ namespace Project
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.textBox16 = new System.Windows.Forms.TextBox();
-            this.numericUpDown8 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -79,7 +77,6 @@ namespace Project
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -583,32 +580,11 @@ namespace Project
             this.comboBox3.Text = "Ascending";
             this.comboBox3.TextChanged += new System.EventHandler(this.comboBox3_TextChanged);
             // 
-            // textBox16
-            // 
-            this.textBox16.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox16.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.textBox16.Location = new System.Drawing.Point(572, 13);
-            this.textBox16.Name = "textBox16";
-            this.textBox16.ReadOnly = true;
-            this.textBox16.Size = new System.Drawing.Size(119, 35);
-            this.textBox16.TabIndex = 38;
-            this.textBox16.Text = "Select top";
-            // 
-            // numericUpDown8
-            // 
-            this.numericUpDown8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown8.Location = new System.Drawing.Point(688, 13);
-            this.numericUpDown8.Name = "numericUpDown8";
-            this.numericUpDown8.Size = new System.Drawing.Size(101, 32);
-            this.numericUpDown8.TabIndex = 39;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1218, 702);
-            this.Controls.Add(this.numericUpDown8);
-            this.Controls.Add(this.textBox16);
             this.Controls.Add(this.radioButton6);
             this.Controls.Add(this.comboBox3);
             this.Controls.Add(this.textBox15);
@@ -658,7 +634,6 @@ namespace Project
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -705,8 +680,6 @@ namespace Project
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.TextBox textBox16;
-        private System.Windows.Forms.NumericUpDown numericUpDown8;
     }
 }
 
