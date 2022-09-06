@@ -258,7 +258,6 @@ namespace Project
                 }
             }
             SaveFileDialog a = new SaveFileDialog();
-            a.ShowDialog();
             if (a.ShowDialog() == DialogResult.OK)
             {
                 workbook.SaveAs(a.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.
